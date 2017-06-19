@@ -13,7 +13,7 @@
 
 ## 约定
 
-范例代码中会使用 ES6 的一些语法，也会混用 ES6 Modules/CommonJS。
+范例代码中会使用 ES6 的一些语法，也会混用 ES6 Modules/CommonJS，请大家不要见怪。
 
 ## 作者介绍
 
