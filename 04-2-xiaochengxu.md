@@ -1,11 +1,13 @@
 在小程序中使用 Promise
 ========
 
-小程序里由于要跟原生应用做交互，大部分 API 都是用异步回调实现的，所以自然而然的，我就想用更好的方式去操作。
+国内开发者尤其是前端，肯定不能避开“小程序”这个话题。
 
-因为客户端的 WebView 中不包含原生 Promise，所以“微信 Web 开发工具”中也移除了对 Promise 的支持，需要我们自己处理。
+从[小程序 API 文档](https://mp.weixin.qq.com/debug/wxadoc/dev/api/)可以看出，大部分交互都要藉由异步回调来完成（我猜测这多半是跟原生应用交互导致的）。所以自然而然的，我也想用更好的方式去操作。
 
-如同之前所说，Promise 不需要引入新的语言元素，自然兼容性上佳，所以我们只要引用成熟的 Promise 类库就好。这里我选择的是 [Bluebird](http://bluebirdjs.com/)。
+因为客户端的 WebView 中不支持原生 Promise，所以“微信 Web 开发工具”中也移除了对 Promise 的支持，需要我们自己处理。
+
+好在正如之前所说，Promise 不需要引入新的语言元素，兼容性上佳，所以我们只要引用成熟的 Promise 类库就好。这里我选择 [Bluebird](http://bluebirdjs.com/)。
 
 ## 安装
 
@@ -52,7 +54,7 @@ new Promise( resolve => {
   });
 });
 
-// 这样做是可以的
+// 推荐这样做
 new Promise( (resolve, reject) => {
   wx.checkSession({
     success() {
@@ -63,13 +65,13 @@ new Promise( (resolve, reject) => {
     }
   });
 });
-``` 
+```
 
 ## Await/Async
 
 “微信 Web 开发者工具”里面集成了 Babel 转译工具，可以将 ES6 编译成 ES5，不过 Await/Async 就不支持了。此时我们可以选择自行编译，或者只使用 Promise。
 
-自行编译时，请注意，小程序页面没有 `<script>`，只能引用同名 `.js`，所以要留神输出的文件名哟。这里建议把 JS 写在另一个文件夹，然后用 Babel 转译的时候再写过来。
+自行编译时，请注意，小程序页面没有 `<script>`，只能引用同名 `.js`，所以要留神输出的文件名。这里建议把 JS 写在另一个文件夹，然后用 Babel 转译，把最终文件写过来。
 
 ```bash
 babel /path/to/my-xcx-src -d /path/to/my-xcx --source-map --watch
