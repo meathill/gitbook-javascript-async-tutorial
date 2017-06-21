@@ -1,12 +1,12 @@
 # Summary
 
-* [前言](00-README.md)
+* [前言](README.md)
 * [异步的问题](01-issues-of-async.md)
 * [Promise 方案](02-promise-intro.md)
     * [Promise 入门](02-1-promise-basic.md)
     * [Promise 进阶](02-2-promise-advanced.md)
-* [Await/Async 方案](03-await-async.md)
-    * [Await/Async 和 Promise 队列的异同](03-1-difference-between-await-async-and-promise.md)
+* [Async Functions 方案](03-await-async.md)
+    * [Async Functions 和 Promise 的异同](03-1-difference-between-await-async-and-promise.md)
 * [一起实战吧](04-lets-do-it.md)
     * [降级](04-1-downgrade.md)
     * [小程序](04-2-xiaochengxu.md)

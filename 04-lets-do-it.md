@@ -9,7 +9,7 @@
 
 1. 可读性更好
 2. 返回的结果可以加入任何 Promise 队列
-3. 可以使用 Await/Async
+3. 可以使用 Async Functions
 
 我们就拿读取文件来举个例子。
 
@@ -86,7 +86,7 @@ doSomething()
     // 继续处理
   });
 
-// async/await
+// async functions
 await doSomething();
 if (await openConfirmPopup('确定么')) {
   // 继续处理
@@ -124,9 +124,9 @@ stat('.')
 1. 最后一个参数是回调函数
 2. 回调函数的参数为 `(err, result)`，前面是可能的错误，后面是正常的结果
 
-### 结合 Await/Async 使用
+### 结合 Async Functions 使用
 
-同样是上面的例子，如果想要结合 Await/Async，可以这样使用：
+同样是上面的例子，如果想要结合 Async Functions，可以这样使用：
 
 ```javascript
 const util = require('util');

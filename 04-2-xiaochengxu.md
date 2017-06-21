@@ -67,9 +67,9 @@ new Promise( (resolve, reject) => {
 });
 ```
 
-## Await/Async
+## Async Functions
 
-“微信 Web 开发者工具”里面集成了 Babel 转译工具，可以将 ES6 编译成 ES5，不过 Await/Async 就不支持了。此时我们可以选择自行编译，或者只使用 Promise。
+“微信 Web 开发者工具”里面集成了 Babel 转译工具，可以将 ES6 编译成 ES5，不过 Async Functions 就不支持了。此时我们可以选择自行编译，或者只使用 Promise。
 
 自行编译时，请注意，小程序页面没有 `<script>`，只能引用同名 `.js`，所以要留神输出的文件名。这里建议把 JS 写在另一个文件夹，然后用 Babel 转译，把最终文件写过来。
 
