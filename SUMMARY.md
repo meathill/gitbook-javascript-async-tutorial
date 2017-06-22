@@ -6,7 +6,7 @@
     * [异步的问题](01-2-issue.md)
     * [异步的发展](01-3-growing.md)
 * [Promise 方案](02-promise-intro.md)
-    * [Promise 入门](02-1-promise-basic.md)
+    * [Promise 详解](02-1-promise-basic.md)
     * [Promise 进阶](02-2-promise-advanced.md)
 * [Async Functions 方案](03-await-async.md)
     * [Async Functions 和 Promise 的异同](03-1-difference-between-await-async-and-promise.md)
