@@ -2,6 +2,9 @@
 
 * [前言](README.md)
 * [异步的问题](01-issues-of-async.md)
+    * [异步的起源](01-1-start.md)
+    * [异步的问题](01-2-issue.md)
+    * [异步问题的发展](01-3-growing.md)
 * [Promise 方案](02-promise-intro.md)
     * [Promise 入门](02-1-promise-basic.md)
     * [Promise 进阶](02-2-promise-advanced.md)
