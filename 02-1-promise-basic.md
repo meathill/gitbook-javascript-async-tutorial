@@ -86,7 +86,7 @@ new Promise( resolve => {
 
 ### Promise.resolve()
 
-这里必须补充一下 Promise.resolve() 的相关知识。它是 Promise 的静态方法，可以返回一个状态为 `fulfilled` 的 Promise 实例。
+这里必须补充一下 Promise.resolve() 的相关知识。它是 Promise 的静态方法，可以返回一个状态为 `fulfilled` 的 Promise 实例。这个方法非常重要，其它方法都需要用它处理参数。
 
 它可以接受四种不同类型的参数，并且返回不同的值：
 
