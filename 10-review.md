@@ -35,6 +35,13 @@
 
 ## 参考阅读
 
+* [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [MDN Promise 中文](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [阮一峰：ECMAScript 6 入门 - Promise 对象](http://es6.ruanyifeng.com/#docs/promise)
+* [[翻译] We have a problem with promises](http://fex.baidu.com/blog/2015/07/we-have-a-problem-with-promises/)
+* [MDN Generator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Generator)
+* [Async Function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function)
+* [await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
 * [让微信小程序支持 ES6 的 Promise 特性](https://haojen.github.io/2016/11/23/wechat-app-promise/)
 * [util.promisify() in Node.js v8](http://farzicoder.com/util-promisify-in-Node-js-v8/)
 * [util.promisify 官方文档](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original)

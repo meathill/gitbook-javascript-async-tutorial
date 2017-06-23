@@ -1,0 +1,23 @@
+{
+  "name": "javascript-async-tutorial",
+  "version": "0.1.0",
+  "description": "a full tutorial for javascript async coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/meathillbooks/javascript-async-tutorial.git"
+  },
+  "keywords": [],
+  "author": "Meathill <meathill@gmail.com> (http://meathill.com/)",
+  "license": "CC-NY-NC-4.0",
+  "homepage": "https://bitbucket.org/meathillbooks/javascript-async-tutorial#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "run-sequence": "^1.2.2"
+  }
+}

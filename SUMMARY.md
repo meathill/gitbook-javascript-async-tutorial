@@ -11,7 +11,7 @@
     * [Promise 错误处理](02-2-promise-error.md)
     * [Promise 进阶](02-04-promise-advanced.md)
 * [Async Functions 方案](03-await-async.md)
-    * [Async Functions VS Promise](03-1-difference-between-await-async-and-promise.md)
+    * [Async Functions VS Promise](03-1-async-function-vs-promise.md)
 * [一起实战吧](04-lets-do-it.md)
     * [降级](04-1-downgrade.md)
     * [小程序](04-2-xiaochengxu.md)

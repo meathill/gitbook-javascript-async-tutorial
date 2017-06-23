@@ -3,7 +3,7 @@ Async Function VS Promise
 
 ## 异步函数的优势
 
-异步函数对异步编程来说，是很大的进步。尤其在 `try/catch/throw` 方面，异步函数可以延续以前的标准写法，优势非常大。
+异步函数对异步编程来说，有非常很大的提升。尤其在 `try/catch/throw` 方面，异步函数可以延续以前的标准写法，优势非常大。
 
 ## Promise 的优势
 
@@ -13,7 +13,7 @@ Async Function VS Promise
 
 异步函数返回的是一个 Promise 对象；`await` 关键字只能等待 Promise 对象完成操作。
 
-所以关于 Promise 的知识都还有效，大家也必须学习 Promise，才能更好的使用异步函数。
+所以 Promise 的知识都还有效，大家也必须学习 Promise，才能更好的使用异步函数。
 
 ### Promise 能更好的提供队列操作，并且在对象之间传递
 
