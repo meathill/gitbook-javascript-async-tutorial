@@ -129,4 +129,29 @@ Promise.resolve()
 
 ### 继续 `.then()` 的话题
 
-结合上一小节关于 Promise.resolve() 的讲解，我们应该可以推断出 `.then()` 里的状态响应函数不同返回结果对进程的影响了吧。
+结合上一小节关于 Promise.resolve() 的讲解，我们应该可以推断出 `.then()` 里的状态响应函数返回不同结果对进程的影响了吧。
+
+好的，那我们换一个思路，假如一个 Promise 已经完成了，再给它加一个 `.then()`，会是什么效果呢？我们来试一下。
+
+```javascript
+let promise = new Promise(resolve => {
+  setTimeout(() => {
+    console.log('the promise fulfilled');
+    resolve('hello, world');
+  }, 1000);
+});
+
+setTimeout(() => {
+  promise.then( value => {
+    console.log(value);
+  });
+}, 3000);
+
+// 输出
+// （1秒后）the promise fulfilled
+// （3秒后）hello, world
+```
+
+1秒后，Promise 完成；3秒后，给它续上一个 `.then()`，因为它已经处于 `fulfilled` 状态，所以立刻执行响应函数，输出“hello, world”。
+
+这一点很值得我们关注。Promise 从队列操作中脱胎而成，带有很强的队列属性。异步回调开始执行后，我们无法追加操作，也无法判定结束时间。而使用 Promise 的话，我们就可以不关心它什么时候开始什么时候结束，只需要在队列后面追加操作即可。
