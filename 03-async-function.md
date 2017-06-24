@@ -132,5 +132,5 @@ async function getMyProfile() {
 
 ## 普及率
 
-[![Async Function 的普及率](http://images.gitbook.cn/000af860-5801-11e7-92d5-13bc6466d9ae)](http://caniuse.com/#search=async%20function)
+[![Async Function 的普及率](http://zhijia-10060660.file.myqcloud.com/article/images/20170624003509_343.jpg)](http://caniuse.com/#search=async%20function)
 截图于：2017-06-23

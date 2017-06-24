@@ -5,7 +5,7 @@ Promise 方案
 
 社区经过长时间探索，最终总结出 Promise/A+ 方案，并且纳入 ES2015 规范，如今，大部分运行环境都已经原生支持它。
 
-[![Promise 的普及率](https://meathill-lecture.github.io/promise-yes/img/caniuse.jpg)](http://caniuse.com/#search=promise)
+[![Promise 的普及率](http://zhijia-10060660.file.myqcloud.com/article/images/20170624003412_474.jpg)](http://caniuse.com/#search=promise)
 _Promise 的支持情况_
 
 这套方案有以下好处：
@@ -14,4 +14,4 @@ _Promise 的支持情况_
 2. 代码阅读体验很好
 3. 不需要新的语言元素
 
-这套方案由大家共同探索得来，不同类库的实现略有不同，但都会支持 ES2015 标准。本文也以其为准，所以大家尽可以放心往后看。
+这套方案由众多开发者共同探索得来，不同类库的实现略有不同，但日后都会支持 ES2015 标准。本文也以其为准。
