@@ -3,7 +3,7 @@
 
 ## IE
 
-遗憾的是，除了 Edge 版本，IE 都不支持原生 Promise。不过好在 Promise 不需要新的语言元素，所以我们完全可以用独立类库来补足。这里推荐 [Q](https://github.com/kriskowal/q) 和 [Bluebird](http://bluebirdjs.com/)，它们都完全兼容 ES 规范，也就是说，前面介绍的用法都能奏效。
+遗憾的是，除了 Edge 版本，IE 都不支持原生 Promise（更不要提异步函数了）。不过好在 Promise 不需要新的语言元素，所以我们完全可以用独立类库来补足。这里推荐 [Q](https://github.com/kriskowal/q) 和 [Bluebird](http://bluebirdjs.com/)，它们都完全兼容 ES 规范，也就是说，前面介绍的用法都能奏效。
 
 当然如果你不是非要 `new Promise()` 不可，用 jQuery 也完全可以。
 
@@ -30,3 +30,74 @@ $.ajax(url, {
     // 做后续操作
   });
 ```
+
+## 异步函数
+
+异步函数因为引入了新的语法元素，要想在比较古老的浏览器里使用，必须用 Babel 进行转译。
+
+转译的时候我们需要考虑目标平台。异步函数的转译通常分为两步：
+
+1. 转化为 generator
+2. 兼容实现 generator
+
+### 转译为 generator
+
+所以如果目标平台支持 generator，那么只需要用 [transform-async-to-generator](https://babeljs.io/docs/plugins/transform-async-to-generator) 插件就好：
+
+```bash
+npm i --save-dev transform-async-to-generator
+```
+
+然后在 .babelrc 里启用
+
+```json
+{
+  "plugins": ["transform-async-to-generator"]
+}
+```
+
+### 转译为 ES5
+
+不过考虑到现实因素，支持 generator 的浏览器多半可以自动升级，很可能已经支持异步函数，转译的需求可能并不大。国内最大的转译原因还是根深蒂固的 Windows + IE，于是我们需要彻底转译成 ES5。
+
+这时就需要同时多个插件共同工作了。包括 [Syntax async functions](http://babeljs.io/docs/plugins/syntax-async-functions/)、[Regenerator transform](http://babeljs.io/docs/plugins/transform-regenerator/)、[Async to generator transform](http://babeljs.io/docs/plugins/transform-async-to-generator/)、[Runtime transform](http://babeljs.io/docs/plugins/transform-runtime/)。这些插件会帮你把异步函数转译成 generator，然后转译成 regenerator，然后再引入 regenerator 库，最终实现在低版本浏览器里运行异步函数的效果。
+
+```bash
+npm i --save-dev babel-plugin-transform-regenerator babel-plugin-syntax-async-functions babel-plugin-transform-runtime babel-plugin-transform-async-to-generator
+```
+
+然后在 .babelrc 里启用它们：
+
+```json
+{
+  "plugins": [
+    "babel-plugin-transform-regenerator",
+    "babel-plugin-syntax-async-functions",
+    "babel-plugin-transform-async-to-generator",
+    "babel-plugin-transform-runtime"
+  ]
+}
+```
+
+> 需要注意的是，这样至少会引入3000多行代码（据说），对轻量应用影响很大。另外，编译之后的代码，也无法享受到栈和错误捕获方面的优势。
+
+还有一个偷懒的做法，就是索性把 ES2015、ES2017 通通转译成 ES5，这样代码量会增加很多，但配置相对简单：
+
+```bash
+npm i babel-preset-es2015 babel-preset-es2017 babel-plugin-transform-runtime --save-dev
+```
+
+```json
+{
+  "presets": ["es2015", "es2017"],
+  "plugins": ["transform-runtime]
+}
+```
+
+### 还不会用 Babel？
+
+Babel 转译，以及 Webpack 打包其实也包含不少的内容，这里我就不详细介绍了，尚不了解的同学请自行寻找资料学习。如果英文阅读能力尚可的话，直接看官网基本就够了。
+
+* [Babel 官网](http://babeljs.io)
+* [Webpack 官网](https://webpack.js.org)
+* [Babel + Webpack 配置](http://babeljs.io/docs/setup/#installation)

@@ -37,13 +37,12 @@ async function findLargest(dir) {
   for (let i = 0, len = files.length; i < len; i++) {
     stats.push(await fs.stat(files[i]));
   }
-  let file = stats
+  return stats
     .filter( stat => stat.isFile() )
     .reduce( (memo, stat) => {
       if (memo.size > stat.size) return memo;
       return stat;
     });
-  return file;
 }
 
 findLargest('path/to/dir')
@@ -52,7 +51,7 @@ findLargest('path/to/dir')
   });
 ```
 
-怎么样，是不是异常清晰明了，连代码量都减少了很多。而且，因为每次 `await` 都会等待后面的异步函数完成，所以我们还无意间写出了生成队列的代码。当然你可能不希望要队列，毕竟都异步了，队列的吸引力实在不大，那么我们只需要把它改成下面这种样子就行了：
+怎么样，是不是异常清晰明了，连代码量都减少了很多。而且，因为每次 `await` 都会等待后面的异步函数完成，所以我们还无意间写出了生成队列的代码。当然你可能不希望要队列，毕竟都异步了，队列的吸引力实在不大，那么我们只需要把 `for` 循环改成下面这个样子就行了：
 
 ```javascript
 let stats = await Promise.all(files.map( file => fs.stat(file) ));
@@ -68,9 +67,9 @@ let stats = await Promise.all(files.map( file => fs.stat(file) ));
 
 ### `async`
 
-声明一个函数是异步函数。执行异步函数会返回一个 Promise 实例。异步函数的返回值会作为 `.then()` 的参数向后传递。
+声明一个函数是异步函数。执行异步函数会返回一个 Promise 实例。异步函数的返回值会继续向后传递。
 
-`async` 的语法比较简单，就在普通函数前面加个 `async` 而已。
+`async` 的语法比较简单，就在普通函数前面加个 `async` 而已。它也支持箭头函数，也可以用作立刻执行函数。
 
 ### `await`
 
@@ -80,16 +79,16 @@ let stats = await Promise.all(files.map( file => fs.stat(file) ));
 [return_value] = await expression;
 ```
 
-**return_value 返回值**：Promise 执行器的返回值
-**expression 表达式**：Promise 对象，其它类型会使用 `Promise.resolve()` 转换
+* **return_value 返回值**：Promise 执行器的返回值
+* **expression 表达式**：Promise 对象，其它类型会使用 `Promise.resolve()` 转换
 
-使用 `await` 之后，异步函数会暂停执行，等待表达式里的 Promise 完成。`resolve` 之后，返回 Promise 执行器的返回值，然后继续执行。如果 Promise 被 `rejected`，就抛出异常。
+执行到 `await` 之后，异步函数会暂停执行，等待表达式里的 Promise 完成。`resolve` 之后，返回 Promise 执行器的返回值，然后继续执行。如果 Promise 被 `rejected`，就抛出异常。
 
 ## 捕获错误
 
-异步函数最大的改进其实就在捕获错误这里。它可以直接使用 `try/catch/throw` 就想我们之前那样。
+异步函数最大的改进其实就在捕获错误这里。它可以直接使用 `try/catch/throw` 就像我们之前那样。
 
-比如，一款前后端分离的应用，比如论坛块，需要用户登录，所以在初始化的时候就会去后端请求用户信息，如果返回了，就继续加载用户关注列表；如果 401，就让用户登录。用 Promise 的话，我们这样做：
+比如，一款前后端分离的应用，论坛，需要用户登录。所以在初始化的时候就会向服务器请求用户信息，如果返回了，就继续加载用户关注列表等其它数据；如果返回 401 错误，就让用户登录。用 Promise 的话，我们可能会这样做：
 
 ```javascript
 function getMyProfile() {
@@ -105,8 +104,10 @@ function getMyProfile() {
     .catch( err => {
       if (err.statusCode === 401) {
         location.href = '#/login';
+      } else {
+        // 处理其它错误
       }
-    })
+    });
 }
 ```
 
@@ -118,19 +119,22 @@ function getMyProfile() {
 async function getMyProfile() {
   let profile;
   try {
-    profile = await fetch('api/me');
-    global.profile = profile;
+    global.profile = await fetch('api/me');
   } catch (e) {
     if (e.statusCode === 401) {
       location.href = '#/login';
+    } else {
+      // 处理其它错误
     }
   }
 }
 ```
 
-另外，如果你真的捕获到错误，你会发现，它的堆栈信息是连续的，甚至可以回溯到调用异步函数的语句，继而可以审查所有堆栈里的变量。这对调试程序带来的帮助非常巨大。
+另外，如果你真的捕获到错误，你会发现，它的堆栈信息是连续的，甚至可以回溯到调用异步函数的语句，继而可以审查所有堆栈里的变量。这对调试程序带来的帮助非常巨大。（需要运行时支持，转译的不行。）
 
 ## 普及率
 
 [![Async Function 的普及率](http://zhijia-10060660.file.myqcloud.com/article/images/20170624003509_343.jpg)](http://caniuse.com/#search=async%20function)
 截图于：2017-06-23
+
+可以看出，大部分主流浏览器都已经支持异步函数，值得关注的，只有 iOS 10.2 和 Android 4。当然在国内的话，IE 始终是老大难问题……

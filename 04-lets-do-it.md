@@ -1,7 +1,7 @@
-一起实战吧
+实战环节
 ========
 
-学会新的异步操作之后，我们自然希望改造之前的异步回调代码。下面我就带领大家来试一试。
+学会新的异步代码书写方式之后，我们自然希望改造之前的异步回调代码。下面我就带领大家来试一试。
 
 ## 将回调包装成 Promise
 
@@ -50,10 +50,10 @@ read();
 
 ## 将任何异步操作包装成 Promise
 
-不止回调，其实我们可以把任意异步操作都包装城 Promise。我们假设需求：
+不止回调，其实我们可以把任意异步操作都包装城 Promise。假设需求：
 
-1. 弹出确认窗口，用户点击确认再继续，点击取消就中断
-2. 由于样式的关系，不能使用 `window.confirm()`
+> 1. 弹出确认窗口，用户点击确认再继续，点击取消就中断
+> 2. 由于样式有要求，不能使用 `window.confirm()`
 
 之前我们的处理方式通常是：
 
@@ -62,6 +62,7 @@ something.on('done', function () { // 先做一些处理
   popup = openConfirmPopup('确定么'); // 弹出确认窗口
   popup.on('confirm', function goOn () { // 用户确认后继续处理
     // 继续处理
+    next();
   });
 });
 ```
@@ -84,12 +85,14 @@ doSomething()
   })
   .then( () => {
     // 继续处理
+    next();
   });
 
 // async functions
 await doSomething();
 if (await openConfirmPopup('确定么')) {
   // 继续处理
+  next();
 }
 ```
 
@@ -169,4 +172,4 @@ console.log(promisified === doSomething[util.promisify.custom]);
 
 如此一来，任何时候我们对目标函数 doSomething 进行 Promise 化处理，都会得到之前定义的函数。运行它，就会按照我们设计的特定逻辑返回 Promise 对象。
 
-有了 `util.promisify`，升级异步回到函数，使用 Promise 或者 Async 真的方便了很多。
+有了 `util.promisify`，升级异步回到函数，使用 Promise 或者异步函数真的方便了很多。
