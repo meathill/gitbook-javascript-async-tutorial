@@ -16,4 +16,5 @@
     * [降级](04-1-downgrade.md)
     * [小程序](04-2-xiaochengxu.md)
     * [其它场景](04-3-other.md)
+    * [Vuex](04-4-vuex.md)
 * [回顾](10-review.md)
