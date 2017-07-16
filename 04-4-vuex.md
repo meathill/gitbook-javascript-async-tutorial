@@ -9,7 +9,7 @@ Vuex 要求开发者使用显式的方式修改数据。对立刻生效的修改
 
 比如说，一个电商网站，有限量促销商品，库存很少，于是很容易发生用户下单时才发现被抢空的情况。这个时候，系统就需要帮助用户重新加载促销商品。同时，还要给出相应提示。换言之，我们不仅需要提交异步修改，还要知道异步修改是什么时候完成的。
 
-一方面，可以通过监测特定属性，也就是借助 `vm.$watch` 来进行。不过这种方式很难区分前置条件，比如我们监测商品列表，但是商品列表有好几种原因会刷新，如果都写在一起，逻辑就很分裂。另一种方法，利用 `stat.dispatch` 会返回对应 `action` 函数的返回值的特性，可以直接返回代理异步操作的 Promise，这样我们就可以给出适当的提示了。
+一方面，可以通过监测特定属性，也就是借助 `vm.$watch` 来进行。不过这种方式很难区分前置条件，比如我们可以 `.$watch` 商品列表，但是商品列表有好几种原因会刷新，如果都写在一起，逻辑就很分裂。另一种方法，利用 `stat.dispatch` 会返回对应 `action` 函数的返回值的特性，可以直接返回代理异步操作的 Promise，这样我们就可以给出适当的提示了。
 
 ```javascript
 // buy.js
@@ -34,7 +34,7 @@ api.checkProduct(productId) // 检查商品是否还在
 // action.js
 [ActionTypes.REFETCH_SALES] ({commit, state}) {
   state.isFetching = true;
-  return api.fetch() // 这里的 Promise 会返回给 dispatch 的地方
+  return api.fetch() // 要点：这里的 Promise 会返回给 dispatch 的地方
     .then(json => {
       commit(MutationTypes.RESET_PRODUCT_LIST, json);
     });
