@@ -49,6 +49,12 @@
 * [微博](http://weibo.com/meathill)
 * [GitHub](https://github.com/meathill)
 
+## 版权许可
+
+本书采用[“保持署名—非商用”创意共享4.0许可证](https://creativecommons.org/licenses/by-nc/4.0/)。
+
+只要保持原作者署名和非商用，您可以自由地阅读、分享、修改本书。
+
 ## 反馈
 
 如果您对于文中的内容有任何疑问，请在评论或 [Issue](https://github.com/meathill/javascript-async-tutorial/issues) 中告诉我。亦可发邮件给我：meathill[at]gmail.com。谢谢。
