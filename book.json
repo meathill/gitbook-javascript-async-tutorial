@@ -1,8 +1,11 @@
 {
-  "plugins": ["disqus"],
+  "plugins": ["disqus", "github"],
   "pluginsConfig": {
     "disqus": {
       "shortName": "js-async-tutorial"
+    },
+    "github": {
+      "url": "https://github.com/meathill/javascript-async-tutorial"
     }
   }
 }
