@@ -4,7 +4,6 @@
   "description": "a full tutorial for javascript async coding",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -14,7 +13,5 @@
   "author": "Meathill <meathill@gmail.com> (http://meathill.com/)",
   "license": "CC-NY-NC-4.0",
   "homepage": "https://bitbucket.org/meathillbooks/javascript-async-tutorial#readme",
-  "devDependencies": {
-    "gulp": "^4.0.2"
-  }
+  "devDependencies": {}
 }
